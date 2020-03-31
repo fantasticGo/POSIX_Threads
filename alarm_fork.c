@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 				errno_abort("Fork");
 			if(pid == (pid_t)0)
 			{
+				printf("I am the chaild process, my process ID is %d\n", getpid());
 				sleep( seconds );
 				printf( "(%d) %s\n", seconds, message );
 				exit(0);
@@ -35,10 +36,14 @@ int main(int argc, char *argv[])
 			{
 				do
 				{
+					printf("I am the parent process, my process ID is %d\n", getpid());
 					pid = waitpid((pid_t)-1, NULL, WNOHANG);
+					printf("In waitpid\n");
 					if(pid == (pid_t)-1)
 						errno_abort("Wait for child");
-				}while(pid != (pid_t)0);
+				}while(pid != (pid_t)0);   //don`t understand this. The first check pid will eq 0, becasue child process is sleep not exit,
+				                           //and parent will execute the input part. How the parent process recovery zombie process? 
+										   //Answer: 
 			}
 		}
 	}
