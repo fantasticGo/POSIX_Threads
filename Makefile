@@ -1,4 +1,4 @@
-CFLAGS = 
+CFLAGS = -g -Wall 
 CC = gcc
 RM = /bin/rm -f
 
@@ -16,5 +16,12 @@ alarm_fork: alarm_fork.o
 alarm_fork.o: alarm_fork.c errors.h wait.h types.h
 	${CC} ${CFLAGS} -c $^
 
+alarm_thread: alarm_thread.o
+	${CC} ${CFLAGS} -o $@ $^ -lpthread
+
+alarm_thread.o: alarm_thread.c errors.h wait.h types.h
+	${CC} ${CFLAGS} -c $^
+
+
 clean:
-	${RM} *.o alarm
+	${RM} *.o 
