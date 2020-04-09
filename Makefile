@@ -22,6 +22,12 @@ alarm_thread: alarm_thread.o
 alarm_thread.o: alarm_thread.c errors.h wait.h types.h
 	${CC} ${CFLAGS} -c $^
 
+thread_error:  thread_error.o
+	${CC} ${CFLAGS} -o $@ $^ -lpthread
+
+thread_error.o: thread_error.c  
+	${CC} ${CFLAGS} -c $^
+
 
 clean:
 	${RM} *.o 
