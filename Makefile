@@ -27,6 +27,11 @@ thread_error:  thread_error.o
 
 thread_error.o: thread_error.c  
 	${CC} ${CFLAGS} -c $^
+lifecycle:  lifecycle.o
+	${CC} ${CFLAGS} -o $@ $^ -lpthread
+
+lifecycle.o: lifecycle.c errors.h  
+	${CC} ${CFLAGS} -c $^
 
 
 clean:
